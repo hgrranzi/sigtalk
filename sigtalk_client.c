@@ -6,15 +6,10 @@
 
 #include "sigtalk.h"
 
-pid_t	check_pid(char *arg_pid)
-{
-	pid_t	nbr;
-
-	return (nbr);
-}
-
 void	send_message(pid_t server_pid, char *message)
 {
+	if (server_pid && message)
+		kill(server_pid, SIGUSR1);
 	return ;
 }
 
@@ -24,11 +19,14 @@ int	main(int argc, char **argv)
 	pid_t	server_pid;
 
 	if (argc != 3)
-		write(1, "Please, provide the server pid and a meesge to send\n", 52);
+		write(2, "Error\n", 6);
 	else
 	{
-		server_pid = check_pid(argv[1]);
-		send_message(server_pid, argv[2]);
+		server_pid = aka_atoi(argv[1]);
+		if (server_pid)
+			send_message(server_pid, argv[2]);
+		else
+			write(2, "Error\n", 6);
 	}
 	return (0);
 }
