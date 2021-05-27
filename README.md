@@ -1,6 +1,6 @@
 # sigtalk
 
-School 21 project
+School 21 project<br>
 Learning Unix signals
 
 ## Status
