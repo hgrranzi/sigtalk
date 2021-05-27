@@ -16,11 +16,11 @@ OBJS_TWO =	$(SRCS_TWO:.c=.o)
 
 all: $(NAME_ONE) $(NAME_TWO)
 
-$(NAME_ONE): sigtalk.h $(SRCS_ONE)
-	$(LINK) $(SRCS_ONE) -o $(NAME_ONE)
+$(NAME_ONE): sigtalk.h $(OBJS_ONE)
+	$(LINK) $(OBJS_ONE) -o $(NAME_ONE)
 
-$(NAME_TWO): sigtalk.h $(SRCS_TWO)
-	$(LINK) $(SRCS_TWO) -o $(NAME_TWO)
+$(NAME_TWO): sigtalk.h $(OBJS_TWO)
+	$(LINK) $(OBJS_TWO) -o $(NAME_TWO)
 
 %.o: %.c sigtalk.h
 	$(COMPILE) $< -o $@
