@@ -14,4 +14,6 @@
 void	aka_putchar(char c);
 void	aka_putnbr(int nbr);
 
+void	handle_signal(sig_number);
+
 #endif
