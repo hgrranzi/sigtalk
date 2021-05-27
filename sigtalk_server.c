@@ -6,7 +6,7 @@
 
 #include "sigtalk.h"
 
-void	handle_signal(sig_number)
+void	handle_signal(int sig_number)
 {
 	if (sig_number)
 		write(1, "Signal recieved\n", 16);
