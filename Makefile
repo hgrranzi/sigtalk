@@ -6,9 +6,9 @@ COMPILE = gcc -c -Wall -Wextra -Werror
 
 LINK = gcc -Wall -Wextra -Werror
 
-SRCS_ONE = sigtalk_server.c
+SRCS_ONE = sigtalk_server.c sigtalk_utils.c
 
-SRCS_TWO = sigtalk_client.c
+SRCS_TWO = sigtalk_client.c sigtalk_utils.c
 
 OBJS_ONE =	$(SRCS_ONE:.c=.o)
 

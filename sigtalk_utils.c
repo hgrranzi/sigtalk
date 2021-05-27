@@ -4,14 +4,24 @@
 /*                                                 */
 /* *********************************************** */
 
-#ifndef SIGTALK_H
-# define SIGTALK_H
+#include "sigtalk.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include <stdlib.h>
+void	aka_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
-void	aka_putchar(char c);
-void	aka_putnbr(int nbr);
-
-#endif
+void	aka_putnbr(int nbr)
+{
+	if (nbr < 0)
+	{
+		aka_putchar('-');
+		aka_putnbr(-1 * nbr);
+	}
+	else
+	{
+		if (nbr > 9)
+			aka_putnbr(nbr / 10);
+		aka_putchar(nbr % 10 + 48);
+	}
+}
