@@ -5,18 +5,42 @@
 /* *********************************************** */
 
 #include "sigtalk.h"
+#include <stdio.h>
+#include <string.h>
+
+void	send_char(pid_t server_pid, unsigned char c)
+{
+	int	i;
+
+	i = 0;
+	while (i < BITS)
+	{
+		if (c & 128)
+			kill(server_pid, SIGUSR2);
+		else
+			kill(server_pid, SIGUSR1);
+		c = c << 1;
+		i++;
+		sleep(1);
+	}
+}
 
 void	send_message(pid_t server_pid, char *message)
 {
-	if (server_pid && message)
-		kill(server_pid, SIGUSR1);
-	return ;
-}
+	int	i;
 
+	i = 0;
+	while (message[i])
+	{
+		send_char(server_pid, (unsigned char)message[i]);
+		i++;
+	}
+	send_char(server_pid, (unsigned char)message[i]);
+}
 
 int	main(int argc, char **argv)
 {
-	pid_t	server_pid;
+	pid_t			server_pid;
 
 	if (argc != 3)
 		write(2, "Error\n", 6);
