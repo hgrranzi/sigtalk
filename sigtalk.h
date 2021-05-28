@@ -12,6 +12,14 @@
 # include <stdlib.h>
 
 # define INT_MAX 2147483647
+# define BITS 8
+
+typedef struct		s_data
+{
+	unsigned char	*str;
+	int				bit;
+	int				index;
+}					t_data;
 
 int		aka_isdigit(char c);
 void	aka_putchar(char c);
