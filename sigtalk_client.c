@@ -33,14 +33,20 @@ void	recieved(int sig_number)
 void	send_int(pid_t server_pid, int nbr)
 {
 	int	i;
+	int	kill_return;
 
 	i = BYTES;
 	while (i > 0)
 	{
 		if (nbr & 01)
-			kill(server_pid, SIGUSR2);
+			kill_return = kill(server_pid, SIGUSR2);
 		else
-			kill(server_pid, SIGUSR1);
+			kill_return = kill(server_pid, SIGUSR1);
+		if (kill_return == -1)
+		{
+			write(2, "Error\n", 6);
+			exit(0);
+		}
 		nbr = nbr >> 1;
 		i--;
 		usleep(50);
