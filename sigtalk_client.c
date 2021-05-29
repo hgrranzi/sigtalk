@@ -57,14 +57,15 @@ void	send_message(pid_t server_pid, char *message)
 		i++;
 	}
 	send_char(server_pid, (unsigned char)message[i]);
-	signal(SIGUSR1, recieved);
 }
 
 int	main(int argc, char **argv)
 {
-	pid_t			server_pid;
-	pid_t			pid;
+	pid_t				server_pid;
+	pid_t				pid;
+	struct sigaction	sa;
 
+	sa.sa_handler = &recieved;
 	if (argc != 3)
 		write(2, "Error\n", 6);
 	else
@@ -76,6 +77,8 @@ int	main(int argc, char **argv)
 			send_int(server_pid, pid);
 			send_int(server_pid, strlen(argv[2]));
 			send_message(server_pid, argv[2]);
+			while (pid)
+				sigaction(SIGUSR1, &sa, NULL);
 		}
 		else
 			write(2, "Error\n", 6);
