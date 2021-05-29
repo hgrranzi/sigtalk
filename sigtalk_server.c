@@ -31,7 +31,7 @@ int	is_full(t_data *data)
 void	resize_str(t_data *data)
 {
 	unsigned char	*new_str;
-	int	i;
+	int				i;
 
 	new_str = malloc((data->index + BITS) * sizeof(unsigned char));
 	if (!new_str)
@@ -78,8 +78,10 @@ void	handle_signal(int sig_number)
 
 int	main(int argc, char **argv)
 {
-	pid_t	pid;
+	pid_t				pid;
+	struct sigaction	sa;
 
+	sa.sa_handler = &handle_signal;
 	g_data.str = NULL;
 	if (argc != 1 || !argv)
 		write(2, "Error\n", 6);
@@ -92,8 +94,8 @@ int	main(int argc, char **argv)
 		{
 			if (!g_data.str)
 				init_message(&g_data);
-			signal(SIGUSR1, handle_signal);
-			signal(SIGUSR2, handle_signal);
+			sigaction(SIGUSR1, &sa, NULL);
+			sigaction(SIGUSR2, &sa, NULL);
 		}
 	}
 	return (0);
