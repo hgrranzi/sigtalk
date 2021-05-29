@@ -24,12 +24,8 @@ unsigned char	*create_str(int str_len)
 	unsigned char	*str;
 
 	str = malloc((str_len + 1) * sizeof(unsigned char));
-	if (!str)
-	{
-		write(2, "Error\n", 6);
-		exit (0);
-	}
-	str[str_len] = '\0';
+	if (str)
+		str[str_len] = '\0';
 	return (str);
 }
 
@@ -41,13 +37,20 @@ void	take_int(t_data *data, int *what_take)
 		data->code = 0;
 		data->bit = 0;
 	}
-	return ;
 }
 
 void	take_char(t_data *data)
 {
 	if (!data->str)
+	{
 		data->str = create_str(data->str_len);
+		if (!data->str)
+		{
+			kill(data->client_pid, SIGUSR2);
+			write(1, "Error\n", 6);
+			exit(0);
+		}
+	}
 	if (data->bit == BITS)
 	{
 		data->str[data->index] = data->code;
@@ -63,7 +66,6 @@ void	take_char(t_data *data)
 		kill(data->client_pid, SIGUSR1);
 		reset_data(data);
 	}
-	return ;
 }
 
 void	handle_signal(int sig_number)

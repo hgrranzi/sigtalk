@@ -25,7 +25,7 @@ void	send_char(pid_t server_pid, unsigned char c)
 
 void	recieved(int sig_number)
 {
-	if (sig_number)
+	if (sig_number == SIGUSR1)
 		write(1, "Message was successfully delivered.\n", 36);
 	exit(0);
 }
@@ -34,7 +34,7 @@ void	send_int(pid_t server_pid, int nbr)
 {
 	int	i;
 
-	i = BITS * 4;
+	i = BYTES;
 	while (i > 0)
 	{
 		if (nbr & 01)
