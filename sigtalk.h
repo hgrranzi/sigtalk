@@ -16,6 +16,7 @@
 
 # define INT_MAX 2147483647
 # define BITS 8
+# define BYTES 32
 
 typedef struct s_data
 {
@@ -25,7 +26,6 @@ typedef struct s_data
 	int				str_len;
 	int				bit;
 	int				index;
-	int				size;
 }					t_data;
 
 int		aka_isdigit(char c);

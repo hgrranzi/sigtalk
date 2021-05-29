@@ -57,7 +57,6 @@ void	send_message(pid_t server_pid, char *message)
 		send_char(server_pid, (unsigned char)message[i]);
 		i++;
 	}
-	send_char(server_pid, (unsigned char)message[i]);
 }
 
 int	main(int argc, char **argv)
