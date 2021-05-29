@@ -5,8 +5,6 @@
 /* *********************************************** */
 
 #include "sigtalk.h"
-#include <stdio.h>
-#include <string.h>
 
 void	send_char(pid_t server_pid, unsigned char c)
 {
@@ -15,11 +13,11 @@ void	send_char(pid_t server_pid, unsigned char c)
 	i = 0;
 	while (i < BITS)
 	{
-		if (c & 128)
+		if (c & 01)
 			kill(server_pid, SIGUSR2);
 		else
 			kill(server_pid, SIGUSR1);
-		c = c << 1;
+		c = c >> 1;
 		i++;
 		sleep(1);
 	}

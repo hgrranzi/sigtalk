@@ -11,14 +11,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+# include <stdio.h>
+# include <string.h>
+
 # define INT_MAX 2147483647
 # define BITS 8
 
-typedef struct		s_data
+typedef struct s_data
 {
 	unsigned char	*str;
+	unsigned char	code;
 	int				bit;
 	int				index;
+	int				size;
 }					t_data;
 
 int		aka_isdigit(char c);
@@ -30,6 +35,5 @@ void	handle_signal(int sig_number);
 
 pid_t	check_pid(char *arg_pid);
 void	send_message(pid_t server_pid, char *message);
-
 
 #endif
