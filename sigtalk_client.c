@@ -19,8 +19,14 @@ void	send_char(pid_t server_pid, unsigned char c)
 			kill(server_pid, SIGUSR1);
 		c = c >> 1;
 		i++;
-		sleep(1);
+		usleep(1000);
 	}
+}
+
+void	recieved(int sig_number)
+{
+	if (sig_number)
+		write(1, "Message was successfully delivered.\n", 36);
 }
 
 void	send_message(pid_t server_pid, char *message)
@@ -34,6 +40,7 @@ void	send_message(pid_t server_pid, char *message)
 		i++;
 	}
 	send_char(server_pid, (unsigned char)message[i]);
+	signal(SIGUSR1, recieved);
 }
 
 int	main(int argc, char **argv)
