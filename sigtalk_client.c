@@ -19,7 +19,7 @@ void	send_char(pid_t server_pid, unsigned char c)
 			kill(server_pid, SIGUSR1);
 		c = c >> 1;
 		i++;
-		usleep(1000);
+		usleep(50);
 	}
 }
 
@@ -27,6 +27,23 @@ void	recieved(int sig_number)
 {
 	if (sig_number)
 		write(1, "Message was successfully delivered.\n", 36);
+}
+
+void	send_int(pid_t server_pid, int nbr)
+{
+	int	i;
+
+	i = BITS * 4;
+	while (i > 0)
+	{
+		if (nbr & 01)
+			kill(server_pid, SIGUSR2);
+		else
+			kill(server_pid, SIGUSR1);
+		nbr = nbr >> 1;
+		i--;
+		usleep(50);
+	}
 }
 
 void	send_message(pid_t server_pid, char *message)
@@ -46,14 +63,20 @@ void	send_message(pid_t server_pid, char *message)
 int	main(int argc, char **argv)
 {
 	pid_t			server_pid;
+	pid_t			pid;
 
 	if (argc != 3)
 		write(2, "Error\n", 6);
 	else
 	{
+		pid = getpid();
 		server_pid = aka_atoi(argv[1]);
 		if (server_pid)
+		{
+			send_int(server_pid, pid);
+			send_int(server_pid, strlen(argv[2]));
 			send_message(server_pid, argv[2]);
+		}
 		else
 			write(2, "Error\n", 6);
 	}
