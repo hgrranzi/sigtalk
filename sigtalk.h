@@ -20,7 +20,9 @@
 typedef struct s_data
 {
 	unsigned char	*str;
-	unsigned char	code;
+	int				code;
+	int				client_pid;
+	int				str_len;
 	int				bit;
 	int				index;
 	int				size;
@@ -35,5 +37,7 @@ void	handle_signal(int sig_number);
 
 pid_t	check_pid(char *arg_pid);
 void	send_message(pid_t server_pid, char *message);
+void	send_int(pid_t server_pid, int nbr);
+void	send_char(pid_t server_pid, unsigned char c);
 
 #endif
