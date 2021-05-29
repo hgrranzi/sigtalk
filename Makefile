@@ -25,10 +25,6 @@ $(NAME_TWO): sigtalk.h $(OBJS_TWO)
 %.o: %.c sigtalk.h
 	$(COMPILE) $< -o $@
 
-check: $(NAME_ONE)
-
-sort: $(NAME_TWO)
-
 clean:
 	rm -f $(OBJS_ONE) $(OBJS_TWO)
 
