@@ -27,6 +27,7 @@ void	recieved(int sig_number)
 {
 	if (sig_number)
 		write(1, "Message was successfully delivered.\n", 36);
+	exit(0);
 }
 
 void	send_int(pid_t server_pid, int nbr)
