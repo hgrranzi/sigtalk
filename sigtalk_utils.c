@@ -31,6 +31,16 @@ void	aka_putnbr(int nbr)
 	}
 }
 
+size_t	aka_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
 int	aka_atoi(char *str)
 {
 	long	nbr;

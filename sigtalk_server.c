@@ -57,7 +57,7 @@ void	add_byte(t_data *data)
 	data->str[data->index] = data->code;
 	if (data->str[data->index] == 0)
 	{
-		write(1, data->str, strlen((char *)data->str)); // my own
+		write(1, data->str, aka_strlen((char *)data->str));
 		write(1, "\n", 1);
 		free(data->str);
 		data->str = NULL;

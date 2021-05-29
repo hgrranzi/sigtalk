@@ -31,6 +31,7 @@ typedef struct s_data
 int		aka_isdigit(char c);
 void	aka_putchar(char c);
 void	aka_putnbr(int nbr);
+size_t	aka_strlen(const char *s);
 int		aka_atoi(char *str);
 
 void	handle_signal(int sig_number);

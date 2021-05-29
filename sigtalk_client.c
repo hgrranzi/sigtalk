@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 		if (server_pid)
 		{
 			send_int(server_pid, pid);
-			send_int(server_pid, strlen(argv[2]));
+			send_int(server_pid, aka_strlen(argv[2]));
 			send_message(server_pid, argv[2]);
 			while (pid)
 				sigaction(SIGUSR1, &sa, NULL);
