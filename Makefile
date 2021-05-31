@@ -2,9 +2,9 @@ NAME_ONE = sigtalk_server
 
 NAME_TWO = sigtalk_client
 
-COMPILE = gcc -c -Wall -Wextra -Werror
+COMPILE = clang -c -Wall -Wextra -Werror
 
-LINK = gcc -Wall -Wextra -Werror
+LINK = clang -Wall -Wextra -Werror
 
 SRCS_ONE = sigtalk_server.c sigtalk_utils.c
 

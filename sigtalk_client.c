@@ -19,7 +19,7 @@ void	send_char(pid_t server_pid, unsigned char c)
 			kill(server_pid, SIGUSR1);
 		c = c >> 1;
 		i++;
-		usleep(50);
+		usleep(70);
 	}
 }
 
