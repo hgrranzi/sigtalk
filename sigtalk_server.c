@@ -97,11 +97,10 @@ int	main(int argc, char **argv)
 		aka_putnbr(pid);
 		aka_putchar('\n');
 		reset_data(&g_data);
+		sigaction(SIGUSR1, &sa, NULL);
+		sigaction(SIGUSR2, &sa, NULL);
 		while (pid)
-		{
-			sigaction(SIGUSR1, &sa, NULL);
-			sigaction(SIGUSR2, &sa, NULL);
-		}
+			;
 	}
 	return (0);
 }

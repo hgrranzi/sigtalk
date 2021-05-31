@@ -80,11 +80,13 @@ int	main(int argc, char **argv)
 		server_pid = aka_atoi(argv[1]);
 		if (server_pid)
 		{
+			sigaction(SIGUSR1, &sa, NULL);
+			sigaction(SIGUSR2, &sa, NULL);
 			send_int(server_pid, pid);
 			send_int(server_pid, aka_strlen(argv[2]));
 			send_message(server_pid, argv[2]);
 			while (pid)
-				sigaction(SIGUSR1, &sa, NULL);
+				;
 		}
 		else
 			write(2, "Error\n", 6);
