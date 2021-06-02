@@ -5,7 +5,7 @@ Learning Unix signals
 
 ## Status
 
-IN PROGRESS
+COMPLETED
 
 ## Description
 
